@@ -62,31 +62,75 @@
         </div>
 
         <div class="contact-form">
-            <form action="send_email.php" method="POST">
+            <form action="send_email.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="name">Nome / Azienda*</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email*</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Telefono*</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="service">Tipo di Trasporto</label>
-                    <select id="service" name="service">
-                        <option value="rifiuti">Trasporto Rifiuti / ADR</option>
-                        <option value="merci">Merci Generali</option>
-                        <option value="altro">Altro / Informazioni</option>
+                    <label for="request_type">Tipo di Richiesta*</label>
+                    <select id="request_type" name="request_type" required>
+                        <option value="">Seleziona...</option>
+                        <option value="azienda">Azienda</option>
+                        <option value="candidatura">Candidatura</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="message">Messaggio*</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <div id="azienda_fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="name_azienda">Nome Azienda*</label>
+                        <input type="text" id="name_azienda" name="name_azienda">
+                    </div>
+                    <div class="form-group">
+                        <label for="email_azienda">Email*</label>
+                        <input type="email" id="email_azienda" name="email_azienda">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_azienda">Telefono*</label>
+                        <input type="tel" id="phone_azienda" name="phone_azienda">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Tipo di Trasporto*</label>
+                        <select id="service" name="service">
+                            <option value="">Seleziona...</option>
+                            <option value="rifiuti">Rifiuti / Inerti / ADR</option>
+                            <option value="merci">Merci generali</option>
+                            <option value="altro">altro / informazioni</option>
+                        </select>
+                    </div>
                 </div>
+                
+                <div id="candidatura_fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="name_cand">Nome*</label>
+                        <input type="text" id="name_cand" name="name_cand">
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Cognome*</label>
+                        <input type="text" id="surname" name="surname">
+                    </div>
+                    <div class="form-group">
+                        <label for="email_cand">Email*</label>
+                        <input type="email" id="email_cand" name="email_cand">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_cand">Telefono*</label>
+                        <input type="tel" id="phone_cand" name="phone_cand">
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Candidatura per*</label>
+                        <select id="position" name="position">
+                            <option value="">Seleziona...</option>
+                            <option value="autista">Autista</option>
+                            <option value="impiegato">Impiegato</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cv">Carica il tuo CV (opzionale)</label>
+                        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                    </div>
+                    <div class="form-group">
+                        <label for="message_cand">Messaggio*</label>
+                        <textarea id="message_cand" name="message_cand" rows="5"></textarea>
+                    </div>
+                </div>
+                
                 <button type="submit" class="btn">Invia Richiesta</button>
             </form>
         </div>
@@ -113,5 +157,23 @@
             <p>&copy; 2026 Autotrasporti Bovi S.r.l. - P.IVA [05659380967]</p>
         </div>
     </footer>
+    <script>
+        document.getElementById('request_type').addEventListener('change', function() {
+            var type = this.value;
+            document.getElementById('azienda_fields').style.display = type === 'azienda' ? 'block' : 'none';
+            document.getElementById('candidatura_fields').style.display = type === 'candidatura' ? 'block' : 'none';
+            
+            // Toggle required attributes
+            var aziendaInputs = document.querySelectorAll('#azienda_fields input, #azienda_fields select');
+            var candInputs = document.querySelectorAll('#candidatura_fields input, #candidatura_fields select, #candidatura_fields textarea');
+            
+            aziendaInputs.forEach(function(el) {
+                el.required = type === 'azienda';
+            });
+            candInputs.forEach(function(el) {
+                el.required = type === 'candidatura';
+            });
+        });
+    </script>
 </body>
 </html>
