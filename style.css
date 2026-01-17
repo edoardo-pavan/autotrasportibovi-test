@@ -627,6 +627,30 @@ footer .container {
     font-weight: bold;
 }
 
+.form-group label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+}
+
+.form-group label:has(input[type="checkbox"]) input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.form-group label:has(input[type="checkbox"]) a {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+
+.form-group label:has(input[type="checkbox"]) a:hover {
+    color: #003d80;
+}
+
 .form-group input, .form-group select, .form-group textarea {
     width: 100%;
     padding: 10px;
