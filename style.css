@@ -699,3 +699,25 @@ footer .container {
     mix-blend-mode: multiply; /* Questo rende trasparente il bianco */
     filter: contrast(1.2); /* Opzionale: rende i colori del logo più vivi */
 }
+
+
+.privacy-wrapper {
+    display: flex;          /* Allinea gli elementi in riga */
+    align-items: center;    /* Centra verticalmente checkbox e testo */
+    gap: 10px;              /* Crea spazio tra la checkbox e il testo */
+    margin-top: 15px;
+    color: #0056b3; /* Il blu del tuo logo */
+    text-decoration: underline;
+}
+
+.privacy-wrapper input[type="checkbox"] {
+    width: auto;            /* Impedisce alla checkbox di allargarsi troppo */
+    margin: 0;              /* Rimuove margini indesiderati */
+    cursor: pointer;
+}
+
+.privacy-wrapper label {
+    margin: 0;              /* Toglie margini che potrebbero spingere il testo giù */
+    cursor: pointer;
+    line-height: 1;         /* Evita che l'altezza della riga sballi l'allineamento */
+}
